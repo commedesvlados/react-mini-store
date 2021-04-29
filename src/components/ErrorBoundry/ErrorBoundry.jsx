@@ -8,13 +8,14 @@ export default class ErrorBoundry extends Component {
   }
 
   componentDidCatch() {
-    console.log('catch');
     this.setState({ hasError: true });
   }
 
   render() {
+    if (this.state.hasError) {
+      return <ErrorIndicator/>;
+    }
 
-    return this.state.hasError ? <ErrorIndicator/> : this.props.children;
-
+    return this.props.children;
   }
 }
